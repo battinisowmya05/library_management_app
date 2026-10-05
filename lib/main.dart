@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'screens/books_screen.dart';
+import 'screens/book_details_screen.dart';
 
 void main() {
   runApp(const LibraryApp());
@@ -12,13 +14,20 @@ class LibraryApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Library Management System',
-      home: const ResponsiveHomePage(),
+
+      initialRoute: '/',
+
+      routes: {
+        '/': (context) => const HomeScreen(),
+        '/books': (context) => const BooksScreen(),
+        '/details': (context) => const BookDetailsScreen(),
+      },
     );
   }
 }
 
-class ResponsiveHomePage extends StatelessWidget {
-  const ResponsiveHomePage({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +66,7 @@ class MobileLayout extends StatelessWidget {
               'Welcome to Digital Library',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
+
             const SizedBox(height: 15),
 
             const Icon(Icons.library_books, size: 70, color: Colors.blue),
@@ -79,7 +89,9 @@ class MobileLayout extends StatelessWidget {
             const SizedBox(height: 20),
 
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/books');
+              },
               child: const Text('Explore Books'),
             ),
           ],
@@ -101,22 +113,37 @@ class TabletLayout extends StatelessWidget {
           Expanded(
             child: Image.asset('assets/images/library.jpg', fit: BoxFit.cover),
           ),
+
           const SizedBox(width: 20),
-          const Expanded(
+
+          Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.library_books, size: 80, color: Colors.blue),
-                SizedBox(height: 15),
-                Text(
+                const Icon(Icons.library_books, size: 80, color: Colors.blue),
+
+                const SizedBox(height: 15),
+
+                const Text(
                   'Welcome to Digital Library',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 15),
-                Text(
+
+                const SizedBox(height: 15),
+
+                const Text(
                   'Browse books, manage records, and track your reading progress.',
                   textAlign: TextAlign.center,
+                ),
+
+                const SizedBox(height: 20),
+
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/books');
+                  },
+                  child: const Text('Explore Books'),
                 ),
               ],
             ),
@@ -140,24 +167,39 @@ class DesktopLayout extends StatelessWidget {
             flex: 2,
             child: Image.asset('assets/images/library.jpg', fit: BoxFit.cover),
           ),
+
           const SizedBox(width: 30),
-          const Expanded(
+
+          Expanded(
             flex: 3,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.library_books, size: 100, color: Colors.blue),
-                SizedBox(height: 20),
-                Text(
+                const Icon(Icons.library_books, size: 100, color: Colors.blue),
+
+                const SizedBox(height: 20),
+
+                const Text(
                   'Digital Library Management System',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 20),
-                Text(
+
+                const SizedBox(height: 20),
+
+                const Text(
                   'A responsive Flutter application that adapts to mobile, tablet, and desktop screen sizes.',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18),
+                ),
+
+                const SizedBox(height: 20),
+
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/books');
+                  },
+                  child: const Text('Explore Books'),
                 ),
               ],
             ),
