@@ -12,13 +12,13 @@ class LibraryApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Library Management System',
-      home: const LibraryHomePage(),
+      home: const ResponsiveHomePage(),
     );
   }
 }
 
-class LibraryHomePage extends StatelessWidget {
-  const LibraryHomePage({super.key});
+class ResponsiveHomePage extends StatelessWidget {
+  const ResponsiveHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,58 +26,143 @@ class LibraryHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Library Management System'),
         backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
       ),
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.all(20),
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Colors.blue.shade50,
-            border: Border.all(color: Colors.blue, width: 2),
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text(
-                'Welcome to Digital Library',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth < 600) {
+            return const MobileLayout();
+          } else if (constraints.maxWidth < 900) {
+            return const TabletLayout();
+          } else {
+            return const DesktopLayout();
+          }
+        },
+      ),
+    );
+  }
+}
 
-              const SizedBox(height: 20),
+class MobileLayout extends StatelessWidget {
+  const MobileLayout({super.key});
 
-              const Icon(Icons.library_books, size: 70, color: Colors.blue),
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            const Text(
+              'Welcome to Digital Library',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 15),
 
-              const SizedBox(height: 20),
+            const Icon(Icons.library_books, size: 70, color: Colors.blue),
 
-              Image.asset(
-                'assets/images/library.jpg',
-                height: 180,
-                width: 250,
-                fit: BoxFit.cover,
-              ),
+            const SizedBox(height: 15),
 
-              const SizedBox(height: 20),
+            Image.asset(
+              'assets/images/library.jpg',
+              height: 200,
+              fit: BoxFit.cover,
+            ),
 
-              const Text(
-                'Explore books, manage records, and improve your reading habits.',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
-              ),
+            const SizedBox(height: 15),
 
-              const SizedBox(height: 20),
+            const Text(
+              'Browse books, manage records, and track your reading progress.',
+              textAlign: TextAlign.center,
+            ),
 
-              ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Library Button Clicked')),
-                  );
-                },
-                child: const Text('Explore Books'),
-              ),
-            ],
-          ),
+            const SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('Explore Books'),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class TabletLayout extends StatelessWidget {
+  const TabletLayout({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Row(
+        children: [
+          Expanded(
+            child: Image.asset('assets/images/library.jpg', fit: BoxFit.cover),
+          ),
+          const SizedBox(width: 20),
+          const Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.library_books, size: 80, color: Colors.blue),
+                SizedBox(height: 15),
+                Text(
+                  'Welcome to Digital Library',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 15),
+                Text(
+                  'Browse books, manage records, and track your reading progress.',
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DesktopLayout extends StatelessWidget {
+  const DesktopLayout({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(30),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Image.asset('assets/images/library.jpg', fit: BoxFit.cover),
+          ),
+          const SizedBox(width: 30),
+          const Expanded(
+            flex: 3,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.library_books, size: 100, color: Colors.blue),
+                SizedBox(height: 20),
+                Text(
+                  'Digital Library Management System',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'A responsive Flutter application that adapts to mobile, tablet, and desktop screen sizes.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
