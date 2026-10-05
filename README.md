@@ -2,7 +2,7 @@
 
 ## Abstract
 
-The Library Management App is a Flutter and Dart-based mobile application developed to simplify library management. It allows users to browse books, view details, and manage library resources through a user-friendly interface. The project demonstrates Flutter widgets, responsive design concepts, and fundamental Dart programming concepts while showcasing cross-platform mobile application development.
+The Library Management App is a Flutter and Dart-based mobile application developed to simplify library management. It allows users to browse books, view details, and manage library resources through a user-friendly interface. The project demonstrates Flutter widgets, responsive design concepts, navigation, and fundamental Dart programming concepts while showcasing cross-platform mobile application development.
 
 ---
 
@@ -39,17 +39,21 @@ Implement basic Flutter widgets for UI design.
 * Image
 * Container
 * ElevatedButton
+* Row
+* Column
+* Stack
 
 ### Activities
 
 * Added image assets.
 * Configured `pubspec.yaml`.
 * Designed the main library screen.
-* Implemented basic widgets.
+* Implemented Text, Icon, Image, Container, and ElevatedButton widgets.
+* Used Row, Column, and Stack layouts for UI design.
 
 ### Outcome
 
-Created a simple and interactive user interface using Flutter widgets.
+Created an interactive Library Management interface using Flutter widgets and layout components.
 
 ---
 
@@ -63,17 +67,47 @@ Develop a UI that adapts to different screen sizes.
 
 * Responsive Design
 * LayoutBuilder
-* Mobile, Tablet, and Desktop Layouts
+* Mobile Layout
+* Tablet Layout
+* Desktop Layout
 
 ### Activities
 
 * Created responsive layouts.
-* Adjusted UI based on screen width.
-* Tested on multiple screen sizes.
+* Adjusted UI according to screen width.
+* Tested the application on different screen sizes.
 
 ### Outcome
 
-Successfully implemented a responsive Library Management App interface.
+Successfully implemented a responsive Library Management App interface for multiple devices.
+
+---
+
+## Experiment 4: Navigation Using Navigator and Named Routes
+
+### Objective
+
+Implement navigation between multiple screens using Flutter's Navigator class and Named Routes.
+
+### Concepts Used
+
+* Navigator Class
+* Navigator.pushNamed()
+* Navigator.pop()
+* Named Routes
+* Multi-Screen Navigation
+
+### Activities
+
+* Created Home, Books, and Book Details screens.
+* Configured named routes in MaterialApp.
+* Implemented navigation between screens.
+* Added back navigation functionality.
+* Tested navigation flow across multiple pages.
+
+### Outcome
+
+Successfully implemented multi-screen navigation using Navigator and Named Routes.
 
 ---
 
