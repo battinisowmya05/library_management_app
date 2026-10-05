@@ -111,6 +111,37 @@ Successfully implemented multi-screen navigation using Navigator and Named Route
 
 ---
 
+## Experiment 5: State Management Using setState() and Provider
+
+### Objective
+
+To create dynamic user interfaces using `setState()` and implement application-wide state management using the Provider package.
+
+### Concepts Used
+
+* StatefulWidget
+* setState()
+* ChangeNotifier
+* Provider
+* Consumer
+* Application-wide state management
+
+### Activities
+
+* Converted the Book Details screen into a StatefulWidget.
+* Used `setState()` to dynamically show and hide book descriptions.
+* Added favorite book functionality.
+* Created a LibraryProvider using ChangeNotifier.
+* Used Provider to share application state across multiple screens.
+* Used Consumer to update the UI when the application state changes.
+* Tested dynamic UI updates and shared state management.
+
+### Outcome
+
+Successfully implemented dynamic user interfaces using `setState()` and application-wide state management using the Provider package.
+
+---
+
 ## Technologies Used
 
 * Flutter
