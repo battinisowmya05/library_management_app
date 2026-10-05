@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'models/library_provider.dart';
 import 'screens/books_screen.dart';
 import 'screens/book_details_screen.dart';
 
 void main() {
-  runApp(const LibraryApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => LibraryProvider(),
+      child: const LibraryApp(),
+    ),
+  );
 }
 
 class LibraryApp extends StatelessWidget {
@@ -15,6 +23,7 @@ class LibraryApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Library Management System',
 
+      // Named routes
       initialRoute: '/',
 
       routes: {
@@ -25,6 +34,10 @@ class LibraryApp extends StatelessWidget {
     );
   }
 }
+
+// ------------------------------------------------------
+// HOME SCREEN
+// ------------------------------------------------------
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -37,6 +50,8 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
       ),
+
+      // Responsive UI
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 600) {
@@ -52,6 +67,10 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// ------------------------------------------------------
+// MOBILE LAYOUT
+// ------------------------------------------------------
+
 class MobileLayout extends StatelessWidget {
   const MobileLayout({super.key});
 
@@ -65,6 +84,7 @@ class MobileLayout extends StatelessWidget {
             const Text(
               'Welcome to Digital Library',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
             ),
 
             const SizedBox(height: 15),
@@ -76,6 +96,7 @@ class MobileLayout extends StatelessWidget {
             Image.asset(
               'assets/images/library.jpg',
               height: 200,
+              width: double.infinity,
               fit: BoxFit.cover,
             ),
 
@@ -84,6 +105,21 @@ class MobileLayout extends StatelessWidget {
             const Text(
               'Browse books, manage records, and track your reading progress.',
               textAlign: TextAlign.center,
+            ),
+
+            const SizedBox(height: 15),
+
+            // Provider state
+            Consumer<LibraryProvider>(
+              builder: (context, library, child) {
+                return Text(
+                  'Favorite Books: ${library.favoriteBooks.length}',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              },
             ),
 
             const SizedBox(height: 20),
@@ -101,6 +137,10 @@ class MobileLayout extends StatelessWidget {
   }
 }
 
+// ------------------------------------------------------
+// TABLET LAYOUT
+// ------------------------------------------------------
+
 class TabletLayout extends StatelessWidget {
   const TabletLayout({super.key});
 
@@ -111,7 +151,11 @@ class TabletLayout extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Image.asset('assets/images/library.jpg', fit: BoxFit.cover),
+            child: Image.asset(
+              'assets/images/library.jpg',
+              height: 350,
+              fit: BoxFit.cover,
+            ),
           ),
 
           const SizedBox(width: 20),
@@ -137,6 +181,21 @@ class TabletLayout extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
 
+                const SizedBox(height: 15),
+
+                // Provider state
+                Consumer<LibraryProvider>(
+                  builder: (context, library, child) {
+                    return Text(
+                      'Favorite Books: ${library.favoriteBooks.length}',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  },
+                ),
+
                 const SizedBox(height: 20),
 
                 ElevatedButton(
@@ -154,6 +213,10 @@ class TabletLayout extends StatelessWidget {
   }
 }
 
+// ------------------------------------------------------
+// DESKTOP LAYOUT
+// ------------------------------------------------------
+
 class DesktopLayout extends StatelessWidget {
   const DesktopLayout({super.key});
 
@@ -165,7 +228,11 @@ class DesktopLayout extends StatelessWidget {
         children: [
           Expanded(
             flex: 2,
-            child: Image.asset('assets/images/library.jpg', fit: BoxFit.cover),
+            child: Image.asset(
+              'assets/images/library.jpg',
+              height: 450,
+              fit: BoxFit.cover,
+            ),
           ),
 
           const SizedBox(width: 30),
@@ -188,9 +255,25 @@ class DesktopLayout extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 const Text(
-                  'A responsive Flutter application that adapts to mobile, tablet, and desktop screen sizes.',
+                  'A responsive Flutter application that adapts to mobile, '
+                  'tablet, and desktop screen sizes.',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18),
+                ),
+
+                const SizedBox(height: 15),
+
+                // Provider state
+                Consumer<LibraryProvider>(
+                  builder: (context, library, child) {
+                    return Text(
+                      'Favorite Books: ${library.favoriteBooks.length}',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  },
                 ),
 
                 const SizedBox(height: 20),
