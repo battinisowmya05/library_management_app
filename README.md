@@ -141,6 +141,30 @@ To create dynamic user interfaces using `setState()` and implement application-w
 Successfully implemented dynamic user interfaces using `setState()` and application-wide state management using the Provider package.
 
 ---
+## Experiment 6: Custom Widgets and Themes
+
+### Objective
+
+To create reusable custom widgets and apply themes and custom styles in Flutter.
+
+### Concepts Used
+- Custom Widgets
+- StatelessWidget
+- ThemeData
+- Material Design
+- Custom Text Styles
+- ElevatedButtonThemeData
+
+### Activities
+- Created a reusable CustomBookCard widget.
+- Designed book cards using Card and ListTile.
+- Created a centralized application theme using ThemeData.
+- Customized application colors, AppBar, buttons, and text styles.
+- Integrated custom widgets into the Books screen.
+
+### Outcome
+
+Successfully implemented reusable custom widgets and a consistent application theme for the Library Management App.
 
 ## Technologies Used
 
